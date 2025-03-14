@@ -1,2 +1,3 @@
-# hashmap
-A The Odin Project project
+# HashMap
+
+A The Odin Project project.
