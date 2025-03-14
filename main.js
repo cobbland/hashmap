@@ -32,3 +32,5 @@ for (let linkedList in newHashMap.buckets) {
 }
 
 console.log(newHashMap.get("Elijah"));
+
+console.log(newHashMap.has("Jacobb"));

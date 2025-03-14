@@ -55,4 +55,14 @@ export default class HashMap {
         }
     }
 
+    has(key) {
+        const index = this.hash(key);
+        this.boundsCheck(index);
+        if (this.buckets[index].contains(key)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
