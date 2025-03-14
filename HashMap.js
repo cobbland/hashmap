@@ -5,4 +5,12 @@ export default class HashMap {
         this.capacity = capacity;
     }
 
+    hash(key, seed = 31) {
+        let hashCode = 0;
+        for (let i = 0; i < key.length; i++) {
+            hashCode = (seed * hashCode + key.charCodeAt(i)) % this.capacity;
+        }
+        return hashCode;
+    }
+
 }
