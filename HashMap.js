@@ -1,3 +1,7 @@
+import LinkedList from "./LinkedList.js"
+// Uses LinkedList where `value` is `key`
+// and 'keyValue' is 'value'
+
 export default class HashMap {
 
     constructor(loadFactor = 0.75, capacity = 16) {
@@ -6,7 +10,7 @@ export default class HashMap {
         this.currentLoad = 0;
         this.buckets = [];
         for (let i = 0; i < this.capacity; i++) {
-            this.buckets[i] = [];
+            this.buckets[i] = new LinkedList();
         }
     }
 
@@ -29,19 +33,14 @@ export default class HashMap {
         // if maxed out, grow hashmap
         const index = this.hash(key);
         this.boundsCheck(index);
-        let inHere = false;
-        for (let thing in this.buckets[index]) {
-            if (
-                this.buckets[index][thing] &&
-                this.buckets[index][thing].key === key
-            ) {
-                this.buckets[index][thing].value = value;
-                inHere = true;
-            }
-        }
-        if (!inHere) {
-            this.buckets[index].push({key, value});
-            this.currentLoad++;
+        if (this.buckets[index].contains(key)) {
+            const innerIndex = this.buckets[index].find(key);
+            this.buckets[index].at(innerIndex).keyValue = value;
+        } else {
+            this.buckets[index].append(key);
+            const innerIndex = this.buckets[index].find(key);
+            this.buckets[index].at(innerIndex).keyValue = value;
+            this.currentLoad++
         }
     }
 
