@@ -23,3 +23,5 @@ for (let key in arrOfKeys) {
 newHashMap.set("Elijah", "some new value");
 
 console.log(newHashMap.buckets);
+
+console.log(newHashMap.currentLoad);

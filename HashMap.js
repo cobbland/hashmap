@@ -3,6 +3,7 @@ export default class HashMap {
     constructor(loadFactor = 0.75, capacity = 16) {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
+        this.currentLoad = 0;
         this.buckets = [];
         for (let i = 0; i < this.capacity; i++) {
             this.buckets[i] = [];
@@ -40,6 +41,7 @@ export default class HashMap {
         }
         if (!inHere) {
             this.buckets[index].push({key, value});
+            this.currentLoad++;
         }
     }
 
