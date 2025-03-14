@@ -33,4 +33,8 @@ for (let linkedList in newHashMap.buckets) {
 
 console.log(newHashMap.get("Elijah"));
 
-console.log(newHashMap.has("Jacobb"));
+console.log(newHashMap.has("Jacob"));
+
+console.log(newHashMap.remove("Jacob"));
+
+console.log(newHashMap.has("Jacob"));

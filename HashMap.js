@@ -62,4 +62,15 @@ export default class HashMap {
         }
     }
 
+    remove(key) {
+        const index = this.hash(key);
+        if (this.buckets[index].contains(key)) {
+            const innerIndex = this.buckets[index].find(key);
+            this.buckets[index].removeAt(innerIndex);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
