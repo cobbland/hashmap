@@ -73,4 +73,12 @@ export default class HashMap {
         }
     }
 
+    length() {
+        let count = 0;
+        for (let bucket in this.buckets) {
+            count += this.buckets[bucket].size();
+        }
+        return count;
+    }
+
 }

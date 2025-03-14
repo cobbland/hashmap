@@ -31,10 +31,8 @@ for (let linkedList in newHashMap.buckets) {
     console.log(`Bucket ${linkedList}: ${newHashMap.buckets[linkedList].toString()}`)
 }
 
-console.log(newHashMap.get("Elijah"));
+console.log(newHashMap.length());
 
-console.log(newHashMap.has("Jacob"));
+newHashMap.remove("Jacob");
 
-console.log(newHashMap.remove("Jacob"));
-
-console.log(newHashMap.has("Jacob"));
+console.log(newHashMap.length());
