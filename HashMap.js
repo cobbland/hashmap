@@ -32,7 +32,6 @@ export default class HashMap {
         // check loadFactor
         // if maxed out, grow hashmap
         const index = this.hash(key);
-        this.boundsCheck(index);
         if (this.buckets[index].contains(key)) {
             const innerIndex = this.buckets[index].find(key);
             this.buckets[index].at(innerIndex).keyValue = value;
@@ -46,7 +45,6 @@ export default class HashMap {
 
     get(key) {
         const index = this.hash(key);
-        this.boundsCheck(index);
         if (this.buckets[index].contains(key)) {
             const innerIndex = this.buckets[index].find(key);
             return this.buckets[index].at(innerIndex).keyValue;
@@ -57,7 +55,6 @@ export default class HashMap {
 
     has(key) {
         const index = this.hash(key);
-        this.boundsCheck(index);
         if (this.buckets[index].contains(key)) {
             return true;
         } else {
