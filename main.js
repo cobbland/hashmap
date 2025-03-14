@@ -15,17 +15,20 @@ const arrOfKeys = [
 ];
 
 for (let key in arrOfKeys) {
-    newHashMap.set(arrOfKeys[key], "some value");
+    const value = Math.random()
+    newHashMap.set(arrOfKeys[key], value);
 }
 
 // console.log(newHashMap.buckets);
 
 newHashMap.set("Elijah", "new value");
 
-// console.log(newHashMap.buckets);
+console.log(newHashMap.buckets);
 
 // console.log(newHashMap.currentLoad);
 
 for (let linkedList in newHashMap.buckets) {
     console.log(`Bucket ${linkedList}: ${newHashMap.buckets[linkedList].toString()}`)
 }
+
+console.log(newHashMap.get("Elijah"));
