@@ -83,7 +83,9 @@ export default class HashMap {
 
     clear() {
         for (let bucket in this.buckets) {
-            this.buckets[bucket].pop();
+            while (this.buckets[bucket].size() > 0) {
+                this.buckets[bucket].pop();
+            }
         }
     } // doesn't work yet. Might be because LinkedList's pop function doesn't work right.
 
