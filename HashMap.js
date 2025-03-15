@@ -7,7 +7,6 @@ export default class HashMap {
     constructor(loadFactor = 0.75, capacity = 16) {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
-        this.capacityIncrement = capacity;
         this.currentLoad = 0;
         this.currentLoadFactor = 0.00;
         this.buckets = [];
@@ -22,7 +21,7 @@ export default class HashMap {
 
     moreBuckets() {
         this.updateCurrentLoad();
-        let newCapacity = this.capacity + this.capacityIncrement;
+        let newCapacity = this.capacity * 2;
         for (let i = this.capacity; i < newCapacity; i++) {
             this.buckets[i] = new LinkedList();
         }
@@ -51,7 +50,7 @@ export default class HashMap {
     hash(key, seed = 31) {
         let hashCode = 0;
         for (let i = 0; i < key.length; i++) {
-            hashCode = (seed * hashCode + key.charCodeAt(i)) % this.capacity;
+            hashCode = ((seed * hashCode) ^ key.charCodeAt(i)) % this.capacity;
         }
         return hashCode;
     }
