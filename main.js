@@ -23,16 +23,6 @@ newHashMap.set("Elijah", "new value");
 
 console.log(newHashMap.buckets);
 
-for (let linkedList in newHashMap.buckets) {
-    console.log(`Bucket ${linkedList}: ${newHashMap.buckets[linkedList].toString()}`)
-}
+console.log(newHashMap.keys());
 
-console.log(newHashMap.length());
-
-newHashMap.clear();
-
-console.log(newHashMap.length());
-
-for (let linkedList in newHashMap.buckets) {
-    console.log(`Bucket ${linkedList}: ${newHashMap.buckets[linkedList].toString()}`)
-}
+console.log("Next line?");

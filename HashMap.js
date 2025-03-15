@@ -87,6 +87,17 @@ export default class HashMap {
                 this.buckets[bucket].pop();
             }
         }
-    } // doesn't work yet. Might be because LinkedList's pop function doesn't work right.
+    }
+
+    keys() {
+        let str = "";
+        for (let linkedList in this.buckets) {
+            str += `Bucket ${linkedList}: ${this.buckets[linkedList].toString()}`;
+            if (linkedList < this.buckets.length - 1) {
+                str += "\n";
+            }
+        }
+        return str;
+    }
 
 }
