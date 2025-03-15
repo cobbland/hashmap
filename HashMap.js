@@ -7,11 +7,39 @@ export default class HashMap {
     constructor(loadFactor = 0.75, capacity = 16) {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
+        this.capacityIncrement = capacity;
         this.currentLoad = 0;
+        this.currentLoadFactor = 0.00;
         this.buckets = [];
         for (let i = 0; i < this.capacity; i++) {
             this.buckets[i] = new LinkedList();
         }
+    }
+
+    updateCurrentLoad() {
+        this.currentLoadFactor = this.currentLoad / this.buckets.length;
+    }
+
+    moreBuckets() {
+        this.updateCurrentLoad();
+        let newCapacity = this.capacity + this.capacityIncrement;
+        for (let i = this.capacity; i < newCapacity; i++) {
+            this.buckets[i] = new LinkedList();
+        }
+        this.capacity = newCapacity;
+        const tempNodes = []
+        for (let linkedList in this.buckets) {
+            while (this.buckets[linkedList].size() > 0) {
+                tempNodes.push(this.buckets[linkedList].listTail());
+                this.buckets[linkedList].pop();
+            }
+        }
+        this.currentLoad = 0;
+        this.updateCurrentLoad();
+        for (let node in tempNodes) {
+            this.set(tempNodes[node].value, tempNodes[node].keyValue);
+        }
+        this.updateCurrentLoad();
     }
 
     boundsCheck(index) {
@@ -29,17 +57,19 @@ export default class HashMap {
     }
 
     set(key, value) {
-        // check loadFactor
-        // if maxed out, grow hashmap
         const index = this.hash(key);
         if (this.buckets[index].contains(key)) {
             const innerIndex = this.buckets[index].find(key);
             this.buckets[index].at(innerIndex).keyValue = value;
         } else {
+            if (this.currentLoadFactor >= this.loadFactor) {
+                this.moreBuckets();
+            }
             this.buckets[index].append(key);
             const innerIndex = this.buckets[index].find(key);
             this.buckets[index].at(innerIndex).keyValue = value;
-            this.currentLoad++
+            this.currentLoad++;
+            this.updateCurrentLoad();
         }
     }
 
