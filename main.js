@@ -26,3 +26,7 @@ console.log(newHashMap.buckets);
 console.log(newHashMap.keys());
 
 console.log("Next line?");
+
+newHashMap.set("Sai", "My wife");
+console.log(newHashMap.keys());
+console.log(newHashMap.values());

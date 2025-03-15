@@ -92,7 +92,29 @@ export default class HashMap {
     keys() {
         let str = "";
         for (let linkedList in this.buckets) {
-            str += `Bucket ${linkedList}: ${this.buckets[linkedList].toString()}`;
+            str += `Bucket ${linkedList} keys: ${this.buckets[linkedList].toString()}`;
+            if (linkedList < this.buckets.length - 1) {
+                str += "\n";
+            }
+        }
+        return str;
+    }
+
+    values() {
+        let str = "";
+        for (let linkedList in this.buckets) {
+            str += `Bucket ${linkedList} values: `;
+            if (this.buckets[linkedList].head === null) {
+                str += "( null )";
+            }
+            let currentNode = this.buckets[linkedList].head;
+            while (currentNode !== null && currentNode.nextNode !== null) {
+                str += `( ${currentNode.keyValue} ) -> `;
+                currentNode = currentNode.nextNode;
+            }
+            if (currentNode !== null) {
+                str += `( ${currentNode.keyValue } )`;
+            }
             if (linkedList < this.buckets.length - 1) {
                 str += "\n";
             }
