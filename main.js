@@ -33,13 +33,30 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-console.log(test.entries())
-
+console.log(test.entries());
 console.log(`Hash map current load factor: ${test.currentLoadFactor}`);
 
-test.set("lightsaber", "orange");
-
-console.log(test.entries())
-
+test.set("apple", "green");
+console.log(test.entries());
 console.log(`Hash map current load factor: ${test.currentLoadFactor}`);
 
+test.set('moon', 'silver')
+console.log(test.entries());
+console.log(`Hash map current load factor: ${test.currentLoadFactor}`);
+
+test.set("apple", "red");
+test.set("dog", "white");
+console.log(test.entries());
+console.log(`Hash map current load factor: ${test.currentLoadFactor}`);
+
+console.log(test.get("hat"));
+console.log(test.has("ice cream"));
+console.log(test.has("laser sword"));
+console.log(test.remove("banana"));
+console.log(test.length());
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+
+test.clear()
+console.log(test.length());
