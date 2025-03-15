@@ -68,6 +68,12 @@ export default class LinkedList {
 
     pop() {
         // removes the last element from the list
+        if (this.head === null) {
+            return;
+        } else if (this.head.nextNode === null) {
+            this.head = null;
+            return;
+        }
         let currentNode = this.head;
         let previousNode;
         while (currentNode.nextNode !== null) {
@@ -109,6 +115,10 @@ export default class LinkedList {
         // so you can print them out and preview them in the console. 
         // The format should be: ( value ) -> ( value ) -> ( value ) -> null
         let str = "";
+        if (this.head === null) {
+            str = "( null )";
+            return str;
+        }
         let currentNode = this.head;
         while (currentNode.nextNode !== null) {
             str += `( ${currentNode.value} ) -> `;
